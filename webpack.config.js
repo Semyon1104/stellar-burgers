@@ -1,5 +1,4 @@
 const path = require('path');
-const ESLintPlugin = require('eslint-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
 
@@ -8,53 +7,32 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
-        exclude: /node_modules/,
-        use: ['babel-loader']
-      },
-      {
-        test: /\.(ts)x?$/,
-        exclude: /node_modules/,
-        use: {
-          loader: 'ts-loader'
-        }
-      },
-      {
-        test: /\.css$/,
-        exclude: /\.module\.css$/,
-        use: ['style-loader', 'css-loader']
-      },
-      {
-        test: /\.module\.css$/i,
+        test: /\.(ts|tsx)$/,
         exclude: /node_modules/,
         use: [
-          'style-loader',
           {
-            loader: 'css-loader',
+            loader: 'ts-loader',
             options: {
-              modules: true
+              transpileOnly: true
             }
           }
         ]
       },
       {
-        test: /\.(jpg|jpeg|png|svg)$/,
-        type: 'asset/resource'
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader']
       },
       {
-        test: /\.(woff|woff2)$/,
+        test: /\.(jpg|jpeg|png|svg)$/,
         type: 'asset/resource'
       }
     ]
   },
   plugins: [
-    new ESLintPlugin({
-      extensions: ['.js', '.jsx', '.ts', '.tsx']
-    }),
+    new Dotenv(),
     new HtmlWebpackPlugin({
       template: './public/index.html'
-    }),
-    new Dotenv()
+    })
   ],
   resolve: {
     extensions: [

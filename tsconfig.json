@@ -15,7 +15,6 @@
     "isolatedModules": true,
     "noEmit": false,
     "jsx": "react-jsx",
-    "types": ["node", "jest"],
     "baseUrl": ".",
     "paths": {
       "@pages": ["src/pages"],
@@ -26,7 +25,9 @@
       "@api": ["src/utils/burger-api.ts"],
       "@slices": ["src/services/slices"],
       "@selectors": ["src/services/selectors"]
-    }
+    },
+    "types": ["cypress", "jest", "node"]
   },
-  "include": ["src"]
+  "include": ["src", "cypress"],
+  "exclude": ["node_modules"]
 }
