@@ -28,13 +28,20 @@ export const BurgerConstructor: FC = () => {
   const orderIngredients = bun ? [bun, ...ingredients, bun] : [];
 
   const onOrderClick = () => {
-    if (constructorItems.bun && user) {
-      dispatch(createOrder(orderIngredients));
-    } else if (!constructorItems.bun && user) {
-      return;
-    } else if (!user) {
+    if (!user) {
       navigate('/login');
+      return;
     }
+
+    if (!constructorItems.bun) {
+      return;
+    }
+
+    if (constructorItems.ingredients.length === 0) {
+      return;
+    }
+
+    dispatch(createOrder(orderIngredients));
   };
 
   const price = useMemo(

@@ -8,7 +8,7 @@ import {
 } from '@api';
 
 // Типы для состояния
-interface OrdersState {
+export interface OrdersState {
   orders: TOrder[];
   currentOrder: TOrder | null;
   feed: {

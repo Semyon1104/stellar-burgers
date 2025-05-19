@@ -12,7 +12,7 @@ import {
 } from '@api';
 import { deleteCookie, setCookie } from '../../utils/cookie';
 
-interface AuthState {
+export interface AuthState {
   user: TUser | null;
   isAuthChecked: boolean;
   loading: boolean;

@@ -22,8 +22,8 @@ export const BurgerIngredientUI: FC<TBurgerIngredientUIProps> = memo(
           to={`/ingredients/${_id}`}
           state={locationState}
         >
-          {count && <Counter count={count} />}
-          <img className={styles.img} src={image} alt='картинка ингредиента.' />
+          {count > 0 && <Counter count={count} />}
+          <img className={styles.img} src={image} alt={name} />
           <div className={`${styles.cost} mt-2 mb-2`}>
             <p className='text text_type_digits-default mr-2'>{price}</p>
             <CurrencyIcon type='primary' />
@@ -32,7 +32,7 @@ export const BurgerIngredientUI: FC<TBurgerIngredientUIProps> = memo(
         </Link>
         <AddButton
           text='Добавить'
-          onClick={handleAdd}
+          onClick={() => handleAdd(ingredient)}
           extraClass={`${styles.addButton} mt-8`}
         />
       </li>

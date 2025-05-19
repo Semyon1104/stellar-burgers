@@ -7,7 +7,7 @@ const generateUniqueId = () =>
   Math.random().toString(36).substring(2) + Date.now().toString(36);
 
 // Типы для состояния
-interface BurgerState {
+export interface BurgerState {
   ingredients: TIngredient[];
   constructorItems: {
     bun: TIngredient | null;

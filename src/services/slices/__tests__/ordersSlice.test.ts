@@ -80,20 +80,26 @@ describe('ordersSlice', () => {
   });
 
   it('should handle fetchFeed.fulfilled', () => {
-    const feed: TFeedsResponse = {
-      success: true,
-      orders: [mockOrder],
+    const feed = {
+      orders: [
+        {
+          _id: '1',
+          ingredients: ['1', '2'],
+          status: 'done',
+          name: 'Test Order',
+          createdAt: '2023-01-01T00:00:00.000Z',
+          updatedAt: '2023-01-01T00:00:00.000Z',
+          number: 1
+        }
+      ],
       total: 1,
-      totalToday: 1
+      totalToday: 1,
+      success: true
     };
-    const action = { type: fetchFeed.fulfilled.type, payload: feed };
+    const action = fetchFeed.fulfilled(feed, 'requestId');
     const actual = ordersReducer(initialState, action);
     expect(actual.loading).toBe(false);
-    expect(actual.feed).toEqual({
-      orders: feed.orders,
-      total: feed.total,
-      totalToday: feed.totalToday
-    });
+    expect(actual.feed).toEqual(feed);
   });
 
   it('should handle fetchFeed.rejected', () => {

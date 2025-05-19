@@ -2,9 +2,11 @@ describe('Burger Constructor', () => {
   beforeEach(() => {
     cy.intercept('GET', '**/ingredients', { fixture: 'ingredients.json' }).as('getIngredients');
     cy.intercept('GET', '**/auth/user', { fixture: 'user.json' }).as('getUser');
-    cy.visit('/');
-    cy.wait('@getIngredients');
-    cy.wait('@getUser');
+    cy.waitForApp();
+    cy.wait('@getIngredients', { timeout: 10000 });
+    cy.wait('@getUser', { timeout: 10000 });
+    // Проверяем, что приложение загрузилось
+    cy.get('[data-testid="burger-constructor"]', { timeout: 10000 }).should('exist');
   });
 
   it('should add ingredient to constructor', () => {
