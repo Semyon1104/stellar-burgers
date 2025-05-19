@@ -7,7 +7,6 @@ import {
   getOrderByNumberApi
 } from '@api';
 
-// Типы для состояния
 export interface OrdersState {
   orders: TOrder[];
   currentOrder: TOrder | null;
@@ -20,7 +19,6 @@ export interface OrdersState {
   error: string | null;
 }
 
-// Начальное состояние
 const initialState: OrdersState = {
   orders: [],
   currentOrder: null,
@@ -33,7 +31,6 @@ const initialState: OrdersState = {
   error: null
 };
 
-// Асинхронные действия
 export const fetchOrders = createAsyncThunk('orders/fetchOrders', async () => {
   const response = await getOrdersApi();
   return response;
@@ -60,7 +57,6 @@ export const fetchOrderByNumber = createAsyncThunk(
   }
 );
 
-// Слайс
 const ordersSlice = createSlice({
   name: 'orders',
   initialState,
@@ -74,7 +70,6 @@ const ordersSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      // Fetch Orders
       .addCase(fetchOrders.pending, (state) => {
         state.loading = true;
         state.error = null;
@@ -87,7 +82,7 @@ const ordersSlice = createSlice({
         state.loading = false;
         state.error = action.error.message || 'Ошибка получения заказов';
       })
-      // Fetch Feed
+
       .addCase(fetchFeed.pending, (state) => {
         state.loading = true;
         state.error = null;
@@ -100,7 +95,7 @@ const ordersSlice = createSlice({
         state.loading = false;
         state.error = action.error.message || 'Ошибка получения ленты заказов';
       })
-      // Create Order
+
       .addCase(createOrder.pending, (state) => {
         state.loading = true;
         state.error = null;
@@ -113,7 +108,7 @@ const ordersSlice = createSlice({
         state.loading = false;
         state.error = action.error.message || 'Ошибка создания заказа';
       })
-      // Fetch Order By Number
+
       .addCase(fetchOrderByNumber.pending, (state) => {
         state.loading = true;
         state.error = null;
@@ -129,6 +124,5 @@ const ordersSlice = createSlice({
   }
 });
 
-// Экспортируем действия и редьюсер
 export const { setCurrentOrder, clearCurrentOrder } = ordersSlice.actions;
 export default ordersSlice.reducer;

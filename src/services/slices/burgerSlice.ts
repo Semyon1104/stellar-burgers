@@ -2,11 +2,9 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { TIngredient, TConstructorIngredient } from '@utils-types';
 import { getIngredientsApi } from '@api';
 
-// Функция для генерации уникального ID
 const generateUniqueId = () =>
   Math.random().toString(36).substring(2) + Date.now().toString(36);
 
-// Типы для состояния
 export interface BurgerState {
   ingredients: TIngredient[];
   constructorItems: {
@@ -17,7 +15,6 @@ export interface BurgerState {
   error: string | null;
 }
 
-// Начальное состояние
 const initialState: BurgerState = {
   ingredients: [],
   constructorItems: {
@@ -28,7 +25,6 @@ const initialState: BurgerState = {
   error: null
 };
 
-// Асинхронный экшен для получения ингредиентов
 export const fetchIngredients = createAsyncThunk(
   'burger/fetchIngredients',
   async () => {
@@ -37,7 +33,6 @@ export const fetchIngredients = createAsyncThunk(
   }
 );
 
-// Слайс
 const burgerSlice = createSlice({
   name: 'burger',
   initialState,
@@ -90,7 +85,6 @@ const burgerSlice = createSlice({
   }
 });
 
-// Экспортируем действия и редьюсер
 export const {
   addIngredient,
   removeIngredient,

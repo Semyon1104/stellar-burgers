@@ -37,7 +37,6 @@ const createConstructorIngredient = (ingredient: TIngredient, id: string): TCons
   id
 });
 
-// Создаем мок для store
 const mockStore = configureStore({
   reducer: {
     burger: () => ({
