@@ -2,7 +2,8 @@ import burgerReducer, {
   addIngredient,
   removeIngredient,
   moveIngredient,
-  clearConstructor
+  clearConstructor,
+  initialState
 } from '../burgerSlice';
 import { TIngredient, TConstructorIngredient } from '@utils-types';
 
@@ -26,16 +27,6 @@ const createConstructorIngredient = (ingredient: TIngredient, id: string): TCons
 });
 
 describe('burgerSlice', () => {
-  const initialState = {
-    constructorItems: {
-      bun: null,
-      ingredients: []
-    },
-    ingredients: [],
-    loading: false,
-    error: null
-  };
-
   it('should handle initial state', () => {
     expect(burgerReducer(undefined, { type: 'unknown' })).toEqual(initialState);
   });

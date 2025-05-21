@@ -6,7 +6,8 @@ import authReducer, {
   getUser,
   updateUser,
   forgotPassword,
-  resetPassword
+  resetPassword,
+  initialState
 } from '../authSlice';
 import { TUser } from '@utils-types';
 
@@ -16,13 +17,6 @@ const mockUser: TUser = {
 };
 
 describe('authSlice', () => {
-  const initialState = {
-    user: null,
-    isAuthChecked: false,
-    loading: false,
-    error: null
-  };
-
   it('should handle initial state', () => {
     expect(authReducer(undefined, { type: 'unknown' })).toEqual(initialState);
   });

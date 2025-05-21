@@ -4,7 +4,8 @@ import ordersReducer, {
   fetchOrders,
   fetchFeed,
   createOrder,
-  fetchOrderByNumber
+  fetchOrderByNumber,
+  initialState
 } from '../ordersSlice';
 import { TOrder, TFeedsResponse } from '@utils-types';
 
@@ -19,18 +20,6 @@ const mockOrder: TOrder = {
 };
 
 describe('ordersSlice', () => {
-  const initialState = {
-    orders: [],
-    currentOrder: null,
-    feed: {
-      orders: [],
-      total: 0,
-      totalToday: 0
-    },
-    loading: false,
-    error: null
-  };
-
   it('should handle initial state', () => {
     expect(ordersReducer(undefined, { type: 'unknown' })).toEqual(initialState);
   });

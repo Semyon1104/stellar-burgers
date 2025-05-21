@@ -31,6 +31,8 @@ const initialState: OrdersState = {
   error: null
 };
 
+export { initialState };
+
 export const fetchOrders = createAsyncThunk('orders/fetchOrders', async () => {
   const response = await getOrdersApi();
   return response;

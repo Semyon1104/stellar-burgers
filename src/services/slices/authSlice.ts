@@ -26,6 +26,8 @@ const initialState: AuthState = {
   error: null
 };
 
+export { initialState };
+
 export const login = createAsyncThunk(
   'auth/login',
   async (data: TLoginData) => {
