@@ -18,12 +18,19 @@ export type TConstructorIngredient = TIngredient & {
 
 export type TOrder = {
   _id: string;
+  ingredients: string[];
   status: string;
   name: string;
   createdAt: string;
   updatedAt: string;
   number: number;
-  ingredients: string[];
+};
+
+export type TFeedsResponse = {
+  success: boolean;
+  orders: TOrder[];
+  total: number;
+  totalToday: number;
 };
 
 export type TOrdersData = {

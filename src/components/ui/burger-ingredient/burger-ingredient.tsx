@@ -1,6 +1,7 @@
 import React, { FC, memo } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './burger-ingredient.module.css';
+import style from './app-header.module.css';
 
 import {
   Counter,
@@ -15,14 +16,14 @@ export const BurgerIngredientUI: FC<TBurgerIngredientUIProps> = memo(
     const { image, price, name, _id } = ingredient;
 
     return (
-      <li className={styles.container}>
+      <li className={styles.container} data-testid="ingredient-item">
         <Link
           className={styles.article}
           to={`/ingredients/${_id}`}
           state={locationState}
         >
-          {count && <Counter count={count} />}
-          <img className={styles.img} src={image} alt='картинка ингредиента.' />
+          {count > 0 && <Counter count={count} />}
+          <img className={styles.img} src={image} alt={name} />
           <div className={`${styles.cost} mt-2 mb-2`}>
             <p className='text text_type_digits-default mr-2'>{price}</p>
             <CurrencyIcon type='primary' />
@@ -31,7 +32,7 @@ export const BurgerIngredientUI: FC<TBurgerIngredientUIProps> = memo(
         </Link>
         <AddButton
           text='Добавить'
-          onClick={handleAdd}
+          onClick={() => handleAdd(ingredient)}
           extraClass={`${styles.addButton} mt-8`}
         />
       </li>
